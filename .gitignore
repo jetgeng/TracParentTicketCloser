@@ -1,0 +1,6 @@
+ParentTicketCloser.egg-info/
+dist/
+build/
+.pydevproject
+.settings/
+.project
