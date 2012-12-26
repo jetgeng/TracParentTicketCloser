@@ -23,7 +23,7 @@ class TicketCloser(Component):
         if ticket.values["status"] == "closed" and len(ticket.values["parents"]) > 0:
             #这里可以做检查。下面是检查的方法
             #通过上面这一句sql就能搞定。
-            cursor.execute("SELECT count(*) as unclosed FROM ticket where id in (select child from subtickets where parent = %s) and status != 'closed'" % ticket.values["parents"])
+            cursor.execute("SELECT COUNT(*) AS UNCLOSED FROM TICKET WHERE ID IN (SELECT CHILD FROM SUBTICKETS WHERE PARENT = %s) AND STATUS != 'closed'" % ticket.values["parents"])
             row = cursor.fetchone()
             try:
                 unclosed = int(row[0])
