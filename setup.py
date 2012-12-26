@@ -13,7 +13,7 @@ setup(
     """,
     license = 'EPL',
     #还要去依赖SubTicket
-    install_requires = ['Trac >= 0.12dev', 'TracSubTicketsPlugin >= 0.2.0'],
+    install_requires = ['Trac >= 0.12dev',],
     packages=find_packages(exclude=['*.tests*']),
     entry_points = {
         'trac.plugins': [
