@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from trac.core import *
+from trac.core import implements, Component
 from trac.ticket.api import ITicketChangeListener
 from trac.ticket.model import Ticket
 
@@ -20,7 +20,7 @@ class TicketCloser(Component):
         #closed , accepted, new , parents
         db = self.env.get_db_cnx()
         cursor = db.cursor()
-        if ticket.values["status"] == "closed" and len(ticket.values["parents"]) > 0:
+        if ticket.values["status"] == "closed" and "parents" in ticket.values and len(ticket.values["parents"]) > 0:
             #这里可以做检查。下面是检查的方法
             #通过上面这一句sql就能搞定。
             cursor.execute("SELECT COUNT(*) AS UNCLOSED FROM TICKET WHERE ID IN (SELECT CHILD FROM SUBTICKETS WHERE PARENT = %s) AND STATUS != 'closed'" % ticket.values["parents"])
